@@ -1,0 +1,125 @@
+require: rubocop-rails
+
+AllCops:
+  NewCops: disable
+  Exclude:
+    - node_modules/**/*
+    - app/channels/
+    - app/channels/**/
+    - app/channels/**/*
+    - app/models/concerns/active_storage_helpers.rb
+    - app/helpers/application_helper.rb
+    - config/**/*
+    - config/*
+    - config.ru
+    - db/migrations/**/*
+    - db/migrate/**/*
+    - db/schema.rb
+    - db/seeds.rb
+    - db/seeds/**
+    - bin/**/*
+    - vendor/assets/**/*
+    - vendor/bundle/**/*
+    - test/**/**
+    - app/controllers/graphql_controller.rb
+    - Gemfile
+    - Rakefile
+
+Layout:
+  Metrics/LineLength:
+    Max: 110
+    Exclude:
+      - Rakefile
+      - Gemfile
+      - config/**/*
+      - lib/tasks/**/*
+      - test/**/*
+    IgnoredPatterns:
+      - (\A|\s)#
+
+Layout/ExtraSpacing:
+  Exclude:
+    - db/migrate/**/*
+
+Layout/IndentationConsistency:
+  EnforcedStyle: indented_internal_methods
+  Exclude:
+    - config/routes.rb
+
+Layout/SpaceBeforeFirstArg:
+  Exclude:
+    - config/routes.rb
+
+Lint/AmbiguousRegexpLiteral:
+  Enabled: false
+
+Lint/Debugger:
+  AutoCorrect: False
+
+Style/AndOr:
+  Enabled: false
+
+# Style/ClassAndModuleChildren:
+#   Exclude:
+#     - app/controllers/**/*
+#     - test/**/*
+
+# Style/FrozenStringLiteralComment:
+#   Exclude:
+#     - app/controllers/**/*
+
+Style/Documentation:
+  Enabled: false
+
+Style/HashSyntax:
+  Enabled: false
+
+Style/MethodDefParentheses:
+  Enabled: false
+
+Style/StringLiterals:
+  Enabled: false
+
+Style/StructInheritance:
+  Exclude:
+    - app/policies/**/*
+
+Metrics/ClassLength:
+  Max: 200
+  Exclude:
+    - test/**/*
+
+Metrics/AbcSize:
+  Exclude:
+    - db/migrate/**/*
+  Max: 20
+
+Metrics/BlockLength:
+  Exclude:
+    - lib/tasks/*.rake
+    - config/routes.rb
+    - config/**/*
+    - Gemfile
+
+Metrics/MethodLength:
+  Max: 15
+  Exclude:
+    - db/migrate/*
+
+Rails:
+  Enabled: true
+
+Rails/ReflectionClassName:
+  Enabled: false
+
+Rails/BulkChangeTable:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/SymbolArray:
+  Enabled: false
+
+Style/WordArray:
+  Enabled: false
