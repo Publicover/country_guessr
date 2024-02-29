@@ -21,7 +21,7 @@ class AuthenticateUserTest < ActionDispatch::IntegrationTest
   test 'can log in with short method' do
     user = users(:one)
     @valid_creds = { email: user.email, password: 'password' }.to_json
-    post auth_login_path, headers: invalid_headers, params: @valid_creds
+    post api_v1_auth_login_path, headers: invalid_headers, params: @valid_creds
     assert_response :success
   end
 end

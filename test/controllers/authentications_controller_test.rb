@@ -9,12 +9,12 @@ class AuthenticationsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'when request is valid' do
-    post auth_login_path, headers: @headers, params: @valid_creds
+    post api_v1_auth_login_path, headers: @headers, params: @valid_creds
     assert_not_nil json['auth_token']
   end
 
   test 'when request is invalid' do
-    post auth_login_path, headers: @headers, params: @invalid_creds
+    post api_v1_auth_login_path, headers: @headers, params: @invalid_creds
     assert_match json['message'], Message.invalid_credentials
   end
 end

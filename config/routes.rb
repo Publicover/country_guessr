@@ -1,3 +1,7 @@
 Rails.application.routes.draw do
-  post 'auth/login', to: 'authentications#authenticate'
+  namespace :api do 
+    namespace :v1 do 
+      post 'auth/login', to: 'authentications#authenticate'
+    end
+  end
 end
