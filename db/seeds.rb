@@ -15,4 +15,15 @@ puts 'Creating surnames...'
 puts 'Creating nationalities...'
 10.times { Nationality.create(name: Faker::Nation.nationality) }
 
+puts 'Creating surname_nationalities...'
+Surname.all.each do |surname|
+  nationality = Nationality.find(Nationality.pluck(:id).sample)
+  SurnameNationality.create(
+    surname_id: surname.id, 
+    surname_name: surname.name, 
+    nationality_id: nationality.id, 
+    nationality_name: nationality.name
+  )
+end
+
 puts 'Seeds complete.'

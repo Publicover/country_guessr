@@ -15,4 +15,8 @@ class SurnameTest < ActiveSupport::TestCase
     new_surname = Surname.new()
     refute new_surname.save
   end
+
+  test 'should know child surname_nationality' do 
+    assert surnames(:one).surname_nationalities.include?(surname_nationalities(:one))
+  end 
 end

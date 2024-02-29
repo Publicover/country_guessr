@@ -32,4 +32,8 @@ class Message
   def self.expired_token
     "Sorry, your token has expired. Please log in again to continue."
   end
+
+  def self.duplicate_record
+    "This record already exists."
+  end
 end

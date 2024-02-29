@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  surname: one
+  nationality: one
+  surname_name: Ba
+  nationality_name: African
+
+two:
+  surname: two
+  nationality: one
+  surname_name: Bah
+  nationality_name: African
