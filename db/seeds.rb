@@ -12,4 +12,7 @@ end
 puts 'Creating surnames...'
 50.times { Surname.create(name: Faker::Name.unique.last_name) }
 
+puts 'Creating nationalities...'
+10.times { Nationality.create(name: Faker::Nation.nationality) }
+
 puts 'Seeds complete.'
