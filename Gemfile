@@ -40,6 +40,7 @@ gem 'awesome_print'
 gem 'bcrypt', '~> 3.1.7'
 gem 'jsonapi-serializer'
 gem 'jwt'
+gem 'mechanize'
 gem 'rack-cors'
 
 group :development, :test do
@@ -47,6 +48,8 @@ group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   gem 'faker'
   gem 'rubocop-rails'
+  gem 'vcr'
+  gem 'webmock'
 end
 
 group :development do
