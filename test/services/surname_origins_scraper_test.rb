@@ -11,6 +11,8 @@ class SurnameOriginsScraperTest < ActiveSupport::TestCase
     @american_page = get_american_page
     # this is the third link on the nationality page; it has pagination links 
     @arabic_page = get_arabic_page
+    # this is the page for the first name on the african page 
+    @ba_page = get_ba_page
   end
 
   # return landing page with nationalities
@@ -77,5 +79,25 @@ class SurnameOriginsScraperTest < ActiveSupport::TestCase
       @agent.next_page_button(last_links)
     end
     assert button.empty? 
+  end
+
+  test 'should get surname from title of surname show page' do 
+    surname = @agent.get_surname(@ba_page)
+    assert_equal surname, 'Ba'
+  end
+
+  test 'should get nationalities from surname page' do 
+    # get us to the Ba page 
+    links = @agent.page_links(@african_page)
+    next_page = VCR.use_cassette('nationalities_from_surname_page') do 
+      @agent.next_page(links[0])
+    end
+    assert_equal next_page.uri.to_s, 'https://www.familyeducation.com/baby-names/name-meaning/ba'
+    nationality_origins = @agent.surname_nationalities(next_page)
+    # we should have an array of nationalities: ['African', 'Arabic', 'Vietnamese', 'Chinese']
+    assert nationality_origins.is_a?(Array)
+    assert_equal nationality_origins.count, 4
+    assert_equal nationality_origins[0], 'African'
+    assert_equal nationality_origins[-1], 'Chinese'
   end
 end

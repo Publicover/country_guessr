@@ -24,4 +24,10 @@ module ScraperHelpers
       Mechanize.new.get('https://www.familyeducation.com/baby-names/surname/origin/arabic')
     end
   end
+
+  def get_ba_page 
+    VCR.use_cassette('ba_page') do 
+      Mechanize.new.get('https://www.familyeducation.com/baby-names/name-meaning/ba')
+    end
+  end
 end
