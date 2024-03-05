@@ -5,7 +5,7 @@ class Api::V1::CountriesController < ApplicationController
     start_time = Time.zone.now
     @echo = params['name']
     # find_by returns nil so we don't error out
-    @guess = Surname.find_by(name: @echo)
+    @guess = Surname.eager_load(:surname_nationalities).find_by(name: @echo)
     @guess_response = if @guess.nil?
                         'That is not in our database'
                       else
