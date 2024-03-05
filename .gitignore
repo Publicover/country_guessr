@@ -27,3 +27,6 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# Ignore VCR cassettes associated with rake tasks
+/lib/tasks/vcr_cassettes/*

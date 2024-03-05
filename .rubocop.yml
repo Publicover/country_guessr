@@ -24,6 +24,7 @@ AllCops:
     - app/controllers/graphql_controller.rb
     - Gemfile
     - Rakefile
+    - lib/tasks/vcr_cassettes
 
 Layout:
   Metrics/LineLength:

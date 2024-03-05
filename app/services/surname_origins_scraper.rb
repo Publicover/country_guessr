@@ -1,5 +1,20 @@
 # frozen_string_literal: true
 
+# main page:
+# "https://www.familyeducation.com/baby-names/surname/origin"
+
+# nationality_links link to:
+# "https://www.familyeducation.com/baby-names/surname/origin/african"
+
+# nationality_page is:
+# "https://www.familyeducation.com/baby-names/surname/origin/african"
+
+# surname_links link to:
+# "https://www.familyeducation.com/baby-names/name-meaning/ba"
+
+# surname_page is:
+# "https://www.familyeducation.com/baby-names/name-meaning/ba"
+
 class SurnameOriginsScraper
   def retrieve_main_page
     agent = Mechanize.new
@@ -9,12 +24,7 @@ class SurnameOriginsScraper
 
   # due to the CSS on this site, the following method works for multiple pages here
   def page_links(page)
-    page.links_with(css: '//*[@id="block-babynamebybrowseoriginblock"]/ul/li/a')
-  end
-
-  # this exists solely so we can keep a mental model of walking through the site
-  def next_page(link)
-    link.click
+    page.links_with(css: '#block-babynamebybrowseoriginblock > ul > li > a')
   end
 
   # the pagination css looks the same on every page
@@ -26,14 +36,10 @@ class SurnameOriginsScraper
 
   # this site's pattern for pagination is Current, Page, Next, Last
   # return empty array so we can tell if it ran and found nothing rather than just failing
-  def next_page_button(pagination_links)
-    pagination_links[-2].text.include?('Next') ? pagination_links[-2] : []
-  end
-
-  # only for surname index pages
-  # for instance: https://www.familyeducation.com/baby-names/surname/origin/african
-  def surname_links(page)
-    page.search('//*[@id="block-babynamebybrowseoriginblock"]/ul/li/a')
+  def next_page_button(page)
+    button_text = "\n            Next page\n            Next\n          "
+    button = page.link_with(text: button_text)
+    button || nil
   end
 
   # only for pages of individual names
@@ -42,7 +48,7 @@ class SurnameOriginsScraper
     page.search('//*[@id="speak-title"]').text
   end
 
-  # only for pages of individual names
+  # only for pages of individual names, returns array of strings for use in surname_nationality
   # for instance: https://www.familyeducation.com/baby-names/name-meaning/ba
   def surname_nationalities(page)
     origins = []
