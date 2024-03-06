@@ -39,7 +39,8 @@ email and password as params; headers must have Content-Type application/json. R
 value of the Authorization key for all subsequent requests (along with Content-Type application/json).
 
 Country guesses have the query string paired to the name param, like this: localhost:3000/api/v1/countries/guess?name=Ba.
-The return values are as specified in the assessment documentation.
+The return values are as specified in the assessment documentation. Using #eager_load in the controller action's nil check 
+sped things up quite a bit, which I'm happy with. 
 
 I used rubocop for styling, VCR for catching API responses, bcrypt and jwt for the auth system, and mechanize for scraping. 
 Minitest is my suite of choice, though I'm fine using RSpec also. I use minitest/pride to keep the colors of the test dots 
